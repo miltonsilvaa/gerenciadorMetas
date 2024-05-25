@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+  <title>Início</title>
+</head>
+<style>
+  body {
+    font-family: Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #3f2b68;
+  }
+
+  header {
+    background-color: #2e204b;
+    padding: 20px;
+    text-align: center;
+  }
+
+  h1 {
+    color: white;
+  }
+
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+  }
+
+  .explicativo {
+    width: 40%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  .explicativo h2 {
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .explicativo p {
+    line-height: 1.6;
+    color: #bb9eff;
+  }
+
+  .botao-leia-mais {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #563d91;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .acoes {
+    text-align: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
+<body>
+  <header>
+    <h1>Gerencie seus Objetivos e Alcance Seus Sonhos</h1>
+  </header>
+
+  <main>
+    <section class="explicativo">
+        <h2>Por que Procrastinamos?</h2>
+        <p>A procrastinação é um problema comum que pode nos impedir de alcançar nossos objetivos. Entenda as causas e aprenda a superá-la!</p>
+        <a href="procrastinacao.html" class="botao-leia-mais">Leia Mais</a>
+    </section>
+
+    <section class="explicativo">
+        <h2>Defina Metas SMART</h2>
+        <p>Aprenda a definir metas específicas, mensuráveis, atingíveis, relevantes e temporizáveis para aumentar suas chances de sucesso!</p>
+        <a href="metas.html" class="botao-leia-mais">Leia Mais</a>
+    </section>
+
+    <section class="acoes">
+        <button id="botao-abrir-tarefas"><a href="lista.html">Lista de Tarefas</a></button>
+        <button id="botao-abrir-pomodoro"><a href="pomodoro.html">Abrir Pomodoro</a></button>
+    </section>
+  </main>
+  
+</body>
+  <script>
+    const botaoAbrirTarefas = document.getElementById('botao-abrir-tarefas');
+    const botaoAbrirPomodoro = document.getElementById('botao-abrir-pomodoro');
+
+    botaoAbrirTarefas.addEventListener('click', () => {
+        // Abrir aba de tarefas (implementar funcionalidade)
+    });
+
+    botaoAbrirPomodoro.addEventListener('click', () => {
+        // Abrir aba de pomodoro (implementar funcionalidade)
+    });
+  </script>
+</html>

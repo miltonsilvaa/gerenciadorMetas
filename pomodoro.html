@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+    <title>Cronômetro Pomodoro</title>
+    </head>
+    <style>
+        body {
+            font-family: Roboto, sans-serif;
+            background-color: #2e204b;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #3f2b68;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: white;
+        }
+        .timer {
+            font-size: 3em;
+            margin: 20px 0;
+            color: white;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:disabled {
+            background-color: #2e204b;
+            cursor: not-allowed;
+        }
+        
+        .description p{
+            margin-top: 20px;
+            font-size: 1em;
+            color: #bb9eff;
+        }
+
+        .description h2{
+            color: white;
+        }
+        
+    </style>
+<body>
+    <div class="container">
+        <h1>Cronômetro Pomodoro</h1>
+        <div class="timer" id="timer">25:00</div>
+        <button id="startStopBtn">Iniciar</button>
+        <button id="resetBtn" disabled>Reiniciar</button>
+        <div id="message"></div>
+        <div class="description">
+            <h2>O que é a Técnica Pomodoro?</h2>
+            <p>A Técnica Pomodoro é um método de gerenciamento de tempo desenvolvido por Francesco Cirillo no final dos anos 1980. A técnica usa um cronômetro para dividir o trabalho em intervalos, tradicionalmente de 25 minutos, separados por breves intervalos. Cada intervalo é conhecido como um "Pomodoro". Após quatro "Pomodoros", é comum fazer um intervalo mais longo.</p>
+        </div>
+    </div>
+</body>
+    <script>
+        const startStopBtn = document.getElementById('startStopBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const timerDisplay = document.getElementById('timer');
+        const message = document.getElementById('message');
+
+        let isRunning = false;
+        let isWorkTime = true;
+        let timer;
+        let minutes = 25;
+        let seconds = 0;
+        let workSessions = 0;
+
+        function updateTimer() {
+            timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                startStopBtn.textContent = 'Pausar';
+                resetBtn.disabled = false;
+                timer = setInterval(() => {
+                    if (seconds === 0) {
+                        if (minutes === 0) {
+                            clearInterval(timer);
+                            isRunning = false;
+                            startStopBtn.textContent = 'Iniciar';
+                            resetBtn.disabled = true;
+
+                            if (isWorkTime) {
+                                workSessions++;
+                                message.textContent = 'Tempo de intervalo!';
+                                if (workSessions % 4 === 0) {
+                                    minutes = 15; // Intervalo longo
+                                } else {
+                                    minutes = 5; // Intervalo curto
+                                }
+                            } else {
+                                message.textContent = 'Hora de trabalhar!';
+                                minutes = 25;
+                            }
+                            isWorkTime = !isWorkTime;
+                            updateTimer();
+                        } else {
+                            minutes--;
+                            seconds = 59;
+                        }
+                    } else {
+                        seconds--;
+                    }
+                    updateTimer();
+                }, 1000);
+            } else {
+                clearInterval(timer);
+                isRunning = false;
+                startStopBtn.textContent = 'Iniciar';
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            isRunning = false;
+            isWorkTime = true;
+            minutes = 25;
+            seconds = 0;
+            workSessions = 0;
+            startStopBtn.textContent = 'Iniciar';
+            resetBtn.disabled = true;
+            message.textContent = '';
+            updateTimer();
+        }
+
+        startStopBtn.addEventListener('click', startTimer);
+        resetBtn.addEventListener('click', resetTimer);
+
+        updateTimer();
+    </script>
+</html>
